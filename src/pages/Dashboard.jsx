@@ -353,6 +353,7 @@ const Dashboard = () => {
                     required
                     className="w-full p-3 border border-gray-300 rounded-lg outline-none"
                     onChange={handleChange}
+                    onClick={(e) => e.target.showPicker()}
                   />
                 </div>
               </div>
@@ -523,13 +524,12 @@ const Dashboard = () => {
             ) : (
               [...myEvents]
                 .sort((a, b) => {
-                  // Safety: Handle missing createdAt field
-                  const timeA = a.createdAt
-                    ? new Date(a.createdAt).getTime()
-                    : 0;
-                  const timeB = b.createdAt
-                    ? new Date(b.createdAt).getTime()
-                    : 0;
+                  // 1. Convert date strings to numeric timestamps for comparison
+                  // We use optional chaining (?.) and a fallback ('0') to prevent crashes
+                  const timeA = new Date(a?.date || 0).getTime();
+                  const timeB = new Date(b?.date || 0).getTime();
+
+                  // 2. Subtract A from B for "Latest to Oldest" (Descending)
                   return timeB - timeA;
                 })
                 .map((event) => (
