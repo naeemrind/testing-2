@@ -193,21 +193,24 @@ const Dashboard = () => {
       organizerId: user?.uid,
       createdAt: new Date().toISOString(),
     };
-
-    dispatch(createEvent(eventData));
-    alert("Event Created Successfully!");
-    setFormData({
-      title: "",
-      date: "",
-      time: "",
-      location: "",
-      description: "",
-      price: "",
-      totalTickets: "",
-    });
-    setImageFile(null);
-    setImagePreview(null);
-    setActiveTab("list");
+    try {
+      await dispatch(createEvent(eventData));
+      alert("Event Created Successfully!");
+      setFormData({
+        title: "",
+        date: "",
+        time: "",
+        location: "",
+        description: "",
+        price: "",
+        totalTickets: "",
+      });
+      setImageFile(null);
+      setImagePreview(null);
+      setActiveTab("list");
+    } catch (error) {
+      alert("Failed to create event: " + error);
+    }
   };
 
   const handleDeleteEvent = async (eventId) => {
@@ -416,7 +419,7 @@ const Dashboard = () => {
               <button
                 type="submit"
                 disabled={isUploading}
-                className="w-full bg-blue-600 text-white p-3 rounded-lg font-bold hover:bg-blue-700"
+                className="w-full bg-blue-600 text-white p-3 rounded-lg font-bold hover:bg-blue-700 cursor-pointer"
               >
                 {isUploading ? "UPLOADING..." : "PUBLISH EVENT"}
               </button>
@@ -565,13 +568,13 @@ const Dashboard = () => {
                     <div className="flex items-center gap-2 justify-end mt-2 sm:mt-0">
                       <button
                         onClick={() => setSelectedEvent(event)}
-                        className="bg-zinc-100 hover:bg-zinc-700 text-gray-700 hover:text-white px-3 py-2 rounded-lg font-bold uppercase text-xs transition-colors"
+                        className="bg-zinc-100 hover:bg-zinc-700 text-gray-700 hover:text-white px-3 cursor-pointer py-2 rounded-lg font-bold uppercase text-xs transition-colors"
                       >
                         Attendees
                       </button>
                       <button
                         onClick={() => handleDeleteEvent(event.id)}
-                        className="bg-red-50 text-red-600 p-2 rounded-lg border border-red-100 hover:bg-red-100 text-xs"
+                        className="bg-red-50 text-red-600 p-2 rounded-lg border border-red-100 hover:bg-red-100 text-xs cursor-pointer"
                       >
                         Delete
                       </button>
