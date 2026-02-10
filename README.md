@@ -1,16 +1,62 @@
-# React + Vite
+# Quetta Events - Event Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+Quetta Events is a web application designed to make buying and selling event tickets simple. The main idea is to connect people who want to go to events with the people organizing them.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Users can browse local events, book tickets, and get a digital pass with a QR code. Organizers have a special dashboard where they can create new events, track sales, and use a built-in camera scanner to check tickets at the door. It solves the problem of paper tickets by making everything digital.
 
-## React Compiler
+# Features List
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Here is what the application can do, broken down by user roles:
 
-## Expanding the ESLint configuration
+## For Attendees (Users)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Browse Events:** See a list of all upcoming events with details like date, time, location, and price.
+
+- **Book Tickets:** Buy a ticket for an event with just one click.
+
+- **Digital Ticket:** Get a unique Ticket ID and QR code immediately after booking.
+
+- **My Tickets:** A dedicated page to see active tickets and a history of past events attended.
+
+- **Event Status:** See if an event is "Sold Out" or "Expired".
+
+## For Organizers
+
+- **Organizer Dashboard:** A control center to manage events.
+
+- **Create Events:** A form to add event details (Title, Price, Capacity) and upload an event banner.
+
+- **Ticket Scanner:** A built-in camera tool that scans attendee QR codes to verify them instantly.
+
+- **Validation System:** The app checks if a ticket is valid, invalid, or already used so people can't use the same ticket twice.
+
+- **Sales Tracking:** See a progress bar showing how many tickets have been sold for each event.
+
+# Tech Stack
+
+**I used modern and popular tools to build this project:**
+
+### Frontend (The Visuals):
+
+- **React.js (Vite):** Makes the website fast and interactive.
+
+- **Tailwind CSS:** Used for styling the pages to look clean and mobile-friendly.
+
+### Backend:
+
+- **Redux Toolkit:** Manages the app's state (like keeping track of the logged-in user and loaded events).
+
+- **Firebase Authentication:** For secure login/signup.
+
+- **Firebase Firestore:** Database to save events, users, and bookings.
+
+### **Extra Tools:**
+
+- **Cloudinary:** Used to store and display event images.
+
+- **qrcode-react:** Generates the QR code for tickets.
+
+- **Html5-QRCode:** Allows the browser to use the camera for scanning tickets.
+
